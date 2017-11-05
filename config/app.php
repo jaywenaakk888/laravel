@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'zh_cn',
 
     /*
     |--------------------------------------------------------------------------
@@ -176,7 +176,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        /**
+         * 新加的扩展
+         */
+        Mews\Purifier\PurifierServiceProvider::class,  
+        Mews\Captcha\CaptchaServiceProvider::class,
     ],
 
     /*
@@ -225,6 +229,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        /**
+         * 新加的扩展
+         */
+        'Purifier' => Mews\Purifier\Facades\Purifier::class,  
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 

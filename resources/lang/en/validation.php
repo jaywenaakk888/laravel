@@ -87,7 +87,11 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
-
+	/**
+	 * 新添加验证信息
+	 */
+    "captcha"              => "The :attribute does not match",
+    
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
