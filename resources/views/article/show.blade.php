@@ -11,10 +11,9 @@
         修改时间：{{ $article->updated_at }}
     </div>
     <div id="content" style="padding: 50px;">
-    <img src="/http.laravel.dev/uploads/2017-11-03-12-42-51-59fc644bd79f3.jpg" class="img-responsive" >
-    <p>
-      {!! $article->content !!}
-    </p>
-  </div>
+        <p>
+        {!! $article->content !!}
+        </p>
+    </div>
 </div>
 @endsection
