@@ -56,7 +56,7 @@ class ArticleController extends Controller
         $replace = array('&nbsp;','&nbsp;','<br />','<br />');
         $str = preg_replace($pattern,$replace,$original_content);
         //修改预插入的图片信息
-        $url = '<img class="img-responsive" src="'.env('APP_URL','http://localhost').'/uploads/';
+        $url = '<img class="img-responsive" src="'.config('app.url').'/uploads/';
         $content = str_replace('[!image]',$url,$str);
 
         $article = new Article;
@@ -128,7 +128,7 @@ class ArticleController extends Controller
         $replace = array('&nbsp;','&nbsp;','<br />','<br />');
         $str = preg_replace($pattern,$replace,$original_content);
         //修改预插入的图片信息
-        $url = '<img class="img-responsive" src="'.env('APP_URL','http://localhost').'/uploads/';
+        $url = '<img class="img-responsive" src="'.config('app.url').'/uploads/';
         $content = str_replace('[!image]',$url,$str);
 
         $article = Article::find($id);
