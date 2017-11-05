@@ -56,8 +56,7 @@ class ArticleController extends Controller
         $replace = array('&nbsp;','&nbsp;','<br />','<br />');
         $str = preg_replace($pattern,$replace,$original_content);
         //修改预插入的图片信息
-        $req_url = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
-        $url = '<img class="img-responsive" src="'.$req_url.$_SERVER ['SERVER_NAME'].'/uploads/';
+        $url = '<img class="img-responsive" src="'.env('APP_URL','http://localhost').'/uploads/';
         $content = str_replace('[!image]',$url,$str);
 
         $article = new Article;
