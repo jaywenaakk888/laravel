@@ -24,12 +24,15 @@ return [
     'settings'      => [
         'default' => [
             'HTML.Doctype'             => 'HTML 4.01 Transitional',
-            'HTML.Allowed'             => 'div,b,strong,i,em,u,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src]',
-            'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
+            // 'HTML.Allowed'             => 'div,b,strong,i,em,u,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src]',
+            // 'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
+            //受信任的的元素
+            'HTML.AllowedElements' => 'a,abbr,address,b,bdo,big,blockquote,br,caption,cite,code,col,colgroup,dd,del,div,dl,dt,em,font,h1,h2,h3,h4,h5,h6,hr,i,img,ins,li,ol,p,pre,s,small,span,sub,sup,strong,table,tbody,td,tfoot,th,thead,tr,tt,u,ul',
+            //受信任的的属性
+            'CSS.AllowedProperties' => 'background,background-attachment,background-color,background-image,background-position,background-repeat,border,border-bottom,border-bottom-color,border-bottom-style,border-bottom-width,border-collapse,border-color,border-left,border-left-color,border-left-style,border-left-width,border-right,border-right-color,border-right-style,border-right-width,border-spacing,border-style,border-top,border-top-color,border-top-style,border-top-width,border-width,caption-side,clear,color,font,font-family,font-size,font-style,font-variant,font-weight,height,letter-spacing,list-style,list-style-image,list-style-position,list-style-type,margin,margin-bottom,margin-left,margin-right,margin-top,padding,padding-bottom,padding-left,padding-right,padding-top,text-align,text-decoration,text-indent,text-transform,width,word-spacing',
             'AutoFormat.AutoParagraph' => true,
             'AutoFormat.RemoveEmpty'   => true,
         ],
-
         'test'    => [
             'Attr.EnableID' => 'true',
         ],

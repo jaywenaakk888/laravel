@@ -45,19 +45,7 @@ class ArticleController extends Controller
             'tag' =>'required',
         ]);
         //使用Purifier防止Xss注入
-        $original_content = Purifier::clean($request->input('content'));
-        //修改content输入的换行符和空格符
-        $pattern = array(
-            '/ /',//半角下空格
-            '/　/',//全角下空格
-            '/\r\n/',//window 下换行符
-            '/\n/',//Linux && Unix 下换行符
-            );
-        $replace = array('&nbsp;','&nbsp;','<br />','<br />');
-        $str = preg_replace($pattern,$replace,$original_content);
-        //修改预插入的图片信息
-        $url = '<img class="img-responsive" src="'.config('app.url').'/uploads/';
-        $content = str_replace('[!image]',$url,$str);
+        $content = Purifier::clean($request->input('content'));
 
         $article = new Article;
         $article->title = $request->input('title');
@@ -117,24 +105,12 @@ class ArticleController extends Controller
             'tag' =>'required',
         ]);
         //使用Purifier防止Xss注入
-        $original_content = Purifier::clean($request->input('content'));
-        //修改content输入的换行符和空格符
-        $pattern = array(
-            '/ /',//半角下空格
-            '/　/',//全角下空格
-            '/\r\n/',//window 下换行符
-            '/\n/',//Linux && Unix 下换行符
-            );
-        $replace = array('&nbsp;','&nbsp;','<br />','<br />');
-        $str = preg_replace($pattern,$replace,$original_content);
-        //修改预插入的图片信息
-        $url = '<img class="img-responsive" src="'.config('app.url').'/uploads/';
-        $content = str_replace('[!image]',$url,$str);
+        $content = Purifier::clean($request->input('content'));
 
         $article = Article::find($id);
         $article->title = $request->input('title');
         $article->content = $content;
-        $article->original_content = $request->input('content');
+        $article->original_content = $request->input('content');        
         $article->user_id = Auth::user()->id;
         $article->tag_id = $request->input('tag');
         $article->state = 1;

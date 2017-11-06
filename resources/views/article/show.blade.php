@@ -11,9 +11,7 @@
         修改时间：{{ $article->updated_at }}
     </div>
     <div id="content" style="padding: 50px;">
-        <p>
         {!! $article->content !!}
-        </p>
     </div>
 </div>
 @endsection

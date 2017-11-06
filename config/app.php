@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -181,6 +181,7 @@ return [
          */
         Mews\Purifier\PurifierServiceProvider::class,  
         Mews\Captcha\CaptchaServiceProvider::class,
+        Stevenyangecho\UEditor\UEditorServiceProvider::class,
     ],
 
     /*
