@@ -45,6 +45,14 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        /**
+         * 自定义admin
+         */
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -74,6 +82,14 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        
+        /**
+         * 自定义admins
+         */
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Admin::class,
+        ],
     ],
 
     /*

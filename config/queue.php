@@ -57,9 +57,10 @@ return [
             'region' => 'us-east-1',
         ],
 
+        //配置默认队列
         'redis' => [
             'driver' => 'redis',
-            'connection' => 'default',
+            'connection' => 'queue',
             'queue' => 'default',
             'retry_after' => 90,
         ],

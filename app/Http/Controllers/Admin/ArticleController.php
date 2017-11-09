@@ -51,7 +51,7 @@ class ArticleController extends Controller
         $article->title = $request->input('title');
         $article->content = $content;
         $article->original_content = $request->input('content');
-        $article->user_id = Auth::user()->id;
+        $article->user_id = $request->session()->get('admin')['id'];
         $article->tag_id = $request->input('tag');
         $article->state = 1;
 
@@ -69,9 +69,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $user_id = Auth::user()->id;
+        $user_id = $request->session()->get('admin')['id'];
         $articles = Article::where('user_id','=',$user_id)->where('state','=','1')->orderBy('id','desc')->paginate(10);
         return view('admin.article.show')->with('articles',$articles);
     }
@@ -111,7 +111,7 @@ class ArticleController extends Controller
         $article->title = $request->input('title');
         $article->content = $content;
         $article->original_content = $request->input('content');        
-        $article->user_id = Auth::user()->id;
+        $article->user_id = $request->session()->get('admin')['id'];
         $article->tag_id = $request->input('tag');
         $article->state = 1;
 
@@ -131,6 +131,7 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $article = Article::find($id);
+        $article->title = $article['title'].str_random(5);
         $article->state = 0;
         if($article->save()){
             return Redirect::to('admin/article/show');

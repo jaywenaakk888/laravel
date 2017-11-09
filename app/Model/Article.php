@@ -12,10 +12,10 @@ class Article extends Model
     protected $table = 'article';
 
     /**
-     * 与user表关联
+     * 与admin表关联
      */
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Model\Admin','user_id','id');
     }
 
     /**

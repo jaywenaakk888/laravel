@@ -20,11 +20,33 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('home', 'HomeController@index');
 Route::post('home/index', 'HomeController@index');
-Auth::routes();
+// Auth::routes();
 
+/**
+ * 登陆，注册，退出，密码找回
+ */
+Route::get('admin/login','AdminController@login');
+Route::post('admin/signin','AdminController@signin');
+
+Route::get('admin/register','AdminController@register');
+Route::post('admin/signup','AdminController@signup');
+Route::get('admin/confirm/{id}','AdminController@confirm');
+
+Route::post('admin/logout','AdminController@logout');
+
+Route::get('admin/password','AdminController@password');
+Route::post('admin/password/email','AdminController@findPassword');
+Route::get('admin/password/reset/{id}','AdminController@reset');
+Route::post('admin/password/request','AdminController@resetPassword');
+/**
+ * 主页显示
+ */
 Route::get('article/{id}', 'ArticleController@show');
 
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function(){
+/**
+ * 登陆后操作
+ */
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin'],function(){
     Route::resource('article','ArticleController');
     Route::post('upload/picture', 'UploadController@picture');
     

@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     // public function __construct()
     // {
-    //     $this->middleware('auth');
+    //     $this->middleware('admin');
     // }
 
     /**
@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $search_title = $request->input('search_title','');
-        $articles = DB::table('article')->select('article.id','article.title','users.name','article.updated_at')->leftJoin('users','article.user_id','=','users.id')->where('article.state','=','1')->where('article.title','like','%'.$search_title.'%')->orderBy('article.id','desc')->paginate(10);
+        $articles = DB::table('article')->select('article.id','article.title','admins.name','article.updated_at')->leftJoin('admins','article.user_id','=','admins.id')->where('article.state','=','1')->where('article.title','like','%'.$search_title.'%')->orderBy('article.id','desc')->paginate(10);
         return view('home')->with('articles',$articles);
     }
 }
