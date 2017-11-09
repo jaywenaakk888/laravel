@@ -2,8 +2,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Redis;
-use App\jobs\SendActivateAccountMail;
-use App\jobs\SendResetPasswordMail;
+use App\Jobs\SendActivateAccountMail;
+use App\Jobs\SendResetPasswordMail;
 
 trait AdminSupportTrait
 {

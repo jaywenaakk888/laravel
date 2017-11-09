@@ -208,7 +208,7 @@ class AdminController extends Controller
                 $admin->password = bcrypt($request->input('password'));
                 if ($admin->save()) {
                     //重置密码成功是删除缓存里面的token
-                    $this->delResetToken($token);
+                    $this->delResetToken($request->input('token'));
                     return Redirect::to('admin/login')->with('success', '密码重置成功，请使用新密码登陆！');
                 } else {
                     return Redirect::back()->withInput()->withErrors('重置密码失败!');
