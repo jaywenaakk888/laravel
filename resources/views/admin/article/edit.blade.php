@@ -109,6 +109,7 @@
                       'attachment', //附件  
                       '|',  
                       'blockquote', //引用  
+                      'link', //超链接
                       'insertcode', //代码语言  
                       '|',  
                       'source', //源代码  
