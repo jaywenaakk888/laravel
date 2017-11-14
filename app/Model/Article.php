@@ -18,10 +18,4 @@ class Article extends Model
         return $this->belongsTo('App\Model\Admin','user_id','id');
     }
 
-    /**
-     * 与tags表关联
-     */
-    public function tag(){
-        return $this->belongsTo('App\Model\Tag');
-    }
 }

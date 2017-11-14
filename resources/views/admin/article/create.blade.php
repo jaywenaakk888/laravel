@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
-        <div class="panel-heading">新增 article</div>
+        <div class="panel-heading">新增文章</div>
 
         <div class="panel-body">
 
@@ -22,16 +22,24 @@
             </div>
           @endif
 
-          <form action="{{ URL('admin/article') }}" method="POST">
+          <form action="{{ URL('admin/article') }}" method="POST"  >
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            Title:<input type="text" name="title" class="form-control" required="required">
-            <br>
-            Tag:<select  name="tag" class="form-control" required="required">
+            <div class="form-group">
+              <label for="title">标题</label>
+              <input type="text" name="title" class="form-control" required="required">
+            </div>
+
+            <div class="form-group">
+              <label for="tag">标签</label><br>
             @foreach ($tags AS $tag)
-              <option value="{{$tag->id}}">{{$tag->name}}</option>
+            <label class="checkbox-inline">
+               <input type="checkbox" name="tag[]"  value="{{$tag->id}}"> {{$tag->name}}
+            </label>
             @endforeach
-            </select>
-            <br>
+            </div>
+
+            <div class="form-group">
+            <label for="content">正文</label>
             <!-- 加载编辑器的容器 -->
             <script id="container" name="content" type="text/plain">
             </script>
@@ -107,9 +115,8 @@
                 ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.    
             });
             </script>
-            <br>
-            <br>
-            <button class="btn btn-lg btn-info">新增 article</button>
+            </div>
+            <button class="btn btn-lg btn-info">确定保存</button>
           </form>
 
         </div>

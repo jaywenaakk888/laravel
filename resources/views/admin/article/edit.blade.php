@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
-        <div class="panel-heading">编辑 article</div>
+        <div class="panel-heading">编辑文章</div>
 
         <div class="panel-body">
 
@@ -25,18 +25,28 @@
           <form action="{{ URL('admin/article/'.$article->id) }}" method="POST">
             <input name="_method" type="hidden" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            Title:<input type="text" name="title" class="form-control" required="required" value="{{$article->title}}" >
-            <br>
-            Tag:<select  name="tag" class="form-control" required="required">
+            <div class="form-group">
+              <label for="title">标题</label>
+              <input type="text" name="title" class="form-control" required="required" value="{{$article->title}}" >
+            </div>
+
+            <div class="form-group">
+              <label for="tag">标签</label><br>
             @foreach ($tags AS $tag)
-                @if($tag->id == $article_tag->id )
-                <option value="{{$tag->id}}" selected>{{$tag->name}}</option>
+                @if(in_array($tag->id,$article_tag))
+                <label class="checkbox-inline">
+                  <input type="checkbox" name="tag[]"  value="{{$tag->id}}" checked> {{$tag->name}}
+                </label>
                 @else
-                <option value="{{$tag->id}}">{{$tag->name}}</option>
+                <label class="checkbox-inline">
+                  <input type="checkbox" name="tag[]"  value="{{$tag->id}}"> {{$tag->name}}
+                </label>
                 @endif
             @endforeach
-            </select>
-            <br>
+            </div>
+
+            <div class="form-group">
+            <label for="content">正文</label>
             <!-- 加载编辑器的容器 -->
             <script id="container" name="content" type="text/plain">
             {!! $article->content !!}
@@ -113,9 +123,8 @@
                 ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.    
             });
             </script>
-            <br>
-            <br>
-            <button class="btn btn-lg btn-info">编辑 article</button>
+           </div>
+            <button class="btn btn-lg btn-info">编辑保存</button>
           </form>
 
         </div>

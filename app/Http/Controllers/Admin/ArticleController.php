@@ -52,7 +52,10 @@ class ArticleController extends Controller
         $article->content = $content;
         $article->original_content = $request->input('content');
         $article->user_id = $request->session()->get('admin')['id'];
-        $article->tag_id = $request->input('tag');
+        if(is_array($request->input('tag'))){
+            $tag_id = implode(',',$request->input('tag'));
+        }
+        $article->tag_id = $tag_id;
         $article->state = 1;
 
         if($article->save()){
@@ -85,7 +88,7 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        $article_tag = Article::find($id)->tag;
+        $article_tag = explode(',',$article['tag_id']);
         $tags = Tag::All();
         return view('admin.article.edit')->with('article',$article)->with('article_tag',$article_tag)->with('tags',$tags);
     }
@@ -112,7 +115,10 @@ class ArticleController extends Controller
         $article->content = $content;
         $article->original_content = $request->input('content');        
         $article->user_id = $request->session()->get('admin')['id'];
-        $article->tag_id = $request->input('tag');
+        if(is_array($request->input('tag'))){
+            $tag_id = implode(',',$request->input('tag'));
+        }
+        $article->tag_id = $tag_id;
         $article->state = 1;
 
         if($article->save()){
