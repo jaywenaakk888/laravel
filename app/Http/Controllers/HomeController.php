@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Article;
-use DB;
+use Illuminate\Support\Facades\Redis;
+use App\Model\Tag;
+
 class HomeController extends Controller
 {
     /**
@@ -24,8 +26,22 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $search_title = $request->input('search_title','');
-        $articles = DB::table('article')->select('article.id','article.title','admins.name','article.updated_at')->leftJoin('admins','article.user_id','=','admins.id')->where('article.state','=','1')->where('article.title','like','%'.$search_title.'%')->orderBy('article.id','desc')->paginate(10);
-        return view('home')->with('articles',$articles);
+        $redis = Redis::connection('home');
+        if(empty($redis->get('tag'))){
+            $this->setTags();
+        }
+        $tags = json_decode($redis->get('tag'));
+        return view('home')->with('tags',$tags);
+    }
+
+    /**
+     * 将tag写入redis
+     */
+    protected function setTags(){
+        $tags = Tag::select('id','name')->get();
+        $redis = Redis::connection('home');
+        $tags_json = json_encode($tags);
+        $redis->set('tag',$tags_json);
+        return $tags_json;
     }
 }

@@ -37,7 +37,7 @@
                     </a>
                 </div>
                 <!-- 搜索框 -->
-                <form class="navbar-form navbar-left" role="search" action="{{url('home/index')}}" method="POST">
+                <form class="navbar-form navbar-left" role="search" action="{{url('article/index')}}" method="GET">
                     <div class="form-group">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="text" name="search_title" class="form-control" placeholder="搜索文章" style="width:300px">
@@ -83,6 +83,11 @@
                     </ul>
                 </div>
             </div>
+            <header  style="color: rgb(255, 255, 255); background-color: rgb(204, 204, 255);">
+            <div class="container"  style=" height:100px; text-align:center; line-height:100px;">
+            <h1>多看多学</h1>
+            </div>
+            </header>
         </nav>
 
         @yield('content')

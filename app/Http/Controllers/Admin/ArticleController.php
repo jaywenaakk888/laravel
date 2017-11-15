@@ -53,14 +53,14 @@ class ArticleController extends Controller
         $article->original_content = $request->input('content');
         $article->user_id = $request->session()->get('admin')['id'];
         if(is_array($request->input('tag'))){
-            $tag_id = implode(',',$request->input('tag'));
+            $tag_id = ','.implode(',',$request->input('tag')).',';
         }
         $article->tag_id = $tag_id;
         $article->state = 1;
 
         if($article->save()){
             $id = $article->id;
-            return Redirect::to('article/'.$id);
+            return Redirect::to('article/show/'.$id);
         }else{
             return Redirect::back()->withInput()->withError('保存失败');
         }
@@ -116,13 +116,13 @@ class ArticleController extends Controller
         $article->original_content = $request->input('content');        
         $article->user_id = $request->session()->get('admin')['id'];
         if(is_array($request->input('tag'))){
-            $tag_id = implode(',',$request->input('tag'));
+            $tag_id = ','.implode(',',$request->input('tag')).',';
         }
         $article->tag_id = $tag_id;
         $article->state = 1;
 
         if($article->save()){
-            return Redirect::to('article/'.$id);
+            return Redirect::to('article/show/'.$id);
         }else{
             return Redirect::back()->withInput()->withError('修改失败');
         }

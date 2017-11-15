@@ -41,7 +41,9 @@ Route::post('admin/password/request','AdminController@resetPassword');
 /**
  * 主页显示
  */
-Route::get('article/{id}', 'ArticleController@show');
+Route::get('article/show/{id}', 'ArticleController@show');
+Route::get('article/index', 'ArticleController@indexBysearch');
+Route::get('article/index/tag/{id}', 'ArticleController@indexByTag');
 
 /**
  * 登陆后操作

@@ -1,23 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" id="content">
-<ul>
-    @foreach ($articles as $article)
-    <li>
-        <div class="title">
-            <a href="{{ URL('article/'.$article->id) }}">
-                <h4>{{ $article->title }}</h4>
-            </a>
-        </div>
-        <div class="name">
-            <p>作者：{{ $article->name }}</p>
-            <p>修改时间：{{ $article->updated_at }}</p>
-        </div>
-    </li>
-    <hr>
+<div class="container">
+  <div class="row">
+    @foreach($tags AS $tag)
+    <div class="col-md-4">
+      <p>
+        <a href="{{url('article/index/tag/'.$tag->id)}}" role="button"  style="height:100px; text-align:center; line-height:100px;color: rgb(0, 0, 0); background-color: rgb(153, 204, 204);font-size:30px;"  class="btn btn-block">
+        {{$tag->name}}
+        </a>
+      </p>
+    </div>
     @endforeach
-</ul>
-{!! $articles->render() !!}
+  </div>
+
 </div>
+
 @endsection
