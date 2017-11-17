@@ -120,7 +120,7 @@
                 ]
             });
                 ue.ready(function() {
-                ue.setHeight(600);
+                ue.setHeight(500);
                 ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.    
             });
             </script>
