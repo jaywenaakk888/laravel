@@ -57,6 +57,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin'],func
 /**
  * 微信接口
  */
-Route::group(['namespace'=>'WeChat'],function(){
+Route::group(['namespace'=>'Wechat'],function(){
     Route::any('wechat', 'WeChatController@serve');
 });
