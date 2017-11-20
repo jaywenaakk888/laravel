@@ -182,6 +182,8 @@ return [
         Mews\Purifier\PurifierServiceProvider::class,  
         Mews\Captcha\CaptchaServiceProvider::class,
         Stevenyangecho\UEditor\UEditorServiceProvider::class,
+        Overtrue\LaravelWeChat\ServiceProvider::class,
+        
     ],
 
     /*
@@ -235,7 +237,8 @@ return [
          */
         'Purifier' => Mews\Purifier\Facades\Purifier::class,  
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
-
+        'EasyWeChat' => Overtrue\LaravelWeChat\Facade::class,
+        
     ],
 
 ];
