@@ -154,6 +154,14 @@ return [
             'port'     => env('REDIS_PORT', 6379),
             'database' => 5,
         ],
+
+        //Access Token缓存
+        'wechat' => [
+            'host'     => env('REDIS_HOST', 'localhost'),
+            'password' => env('REDIS_PASSWORD', null),
+            'port'     => env('REDIS_PORT', 6379),
+            'database' => 6,
+        ],
     ],
 
 ];

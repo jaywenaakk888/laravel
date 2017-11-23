@@ -59,4 +59,5 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin'],func
  */
 Route::group(['namespace'=>'Wechat'],function(){
     Route::any('wechat', 'WeChatController@serve');
+    Route::get('wechat/handle', 'WeChatController@handle');
 });
