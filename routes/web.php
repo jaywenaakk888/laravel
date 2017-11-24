@@ -48,7 +48,7 @@ Route::get('article/index/tag/{id}', 'ArticleController@indexByTag');
 /**
  * 登陆后操作
  */
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin'],function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admingroup'],function(){
     Route::resource('article','ArticleController');
     Route::post('upload/picture', 'UploadController@picture');
     
@@ -61,3 +61,9 @@ Route::group(['namespace'=>'Wechat'],function(){
     Route::any('wechat', 'WeChatController@serve');
     Route::get('wechat/handle', 'WeChatController@handle');
 });
+
+/**
+ * api接口
+ */
+Route::get('apitest/index', 'ApiTestController@index');
+Route::get('apitest/send', 'ApiTestController@send');
